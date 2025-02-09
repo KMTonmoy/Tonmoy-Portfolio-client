@@ -14,8 +14,8 @@ const Banner = () => {
     const resumeLink = "https://drive.usercontent.google.com/u/0/uc?id=1uq1YFRqrk0ZLkgwOHJnTM7NPYRpGbLtm&export=download";
 
     return (
-        <div className="relative mb-10 min-h-[650px] bg-[#1D1730] text-white px-5">
-            <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between pt-10">
+        <div className="relative md:p-0 p-5 mb-10 min-h-[650px] bg-[#1D1730] text-white px-5">
+            <div className="max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center justify-between pt-10">
                 {/* Left Content */}
                 <motion.div
                     className="text-center md:text-left"
