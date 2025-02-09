@@ -10,16 +10,8 @@ import { LiaLinkedin } from "react-icons/lia";
 import { BsYoutube } from "react-icons/bs";
 
 const Banner = () => {
-    // Function to handle resume download
-    const handleDownload = () => {
-        const resumeUrl = "/tonmoy.resume"; // File in the public folder
-        const link = document.createElement("a");
-        link.href = resumeUrl;
-        link.download = "Tonmoy_Ahamed_Resume.pdf"; // Set download name
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    };
+
+    const resumeLink = "https://drive.usercontent.google.com/u/0/uc?id=1uq1YFRqrk0ZLkgwOHJnTM7NPYRpGbLtm&export=download";
 
     return (
         <div className="relative mb-10 min-h-[650px] bg-[#1D1730] text-white px-5">
@@ -36,7 +28,8 @@ const Banner = () => {
                     <p className="flex justify-center md:justify-start items-center gap-2 text-lg md:text-xl font-medium mt-2 text-gray-200">
                         I am a
                         <Typewriter
-                            words={["Web Developer", "Programmer", "Coder"]}
+                            words={["Web Developer", "Frontend Developer", "Programmer", "Coder", "Backend Developer", "React Developer", "Next.js Developer"]}
+
                             loop={Infinity}
                             cursor
                             cursorStyle="|"
@@ -47,14 +40,16 @@ const Banner = () => {
 
                     {/* Buttons */}
                     <div className="flex flex-wrap gap-3 mt-5 justify-center md:justify-start">
-                        <motion.button
+                        <motion.a
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.9 }}
+                            href={resumeLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="bg-[#F95353] px-6 py-3 rounded-md transition-all hover:bg-white hover:text-black"
-                            onClick={handleDownload}
                         >
                             Download Resume
-                        </motion.button>
+                        </motion.a>
                         <motion.button
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.9 }}
