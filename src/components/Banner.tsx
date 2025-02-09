@@ -5,13 +5,19 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
 import MyImage from "../images/MyPhoto.png";
-import { FaFacebook, FaXTwitter } from "react-icons/fa6";
-import { LiaLinkedin } from "react-icons/lia";
-import { BsYoutube } from "react-icons/bs";
+import { FaFacebook, FaTwitter, FaLinkedin, FaYoutube } from "react-icons/fa";
 
 const Banner = () => {
 
     const resumeLink = "https://drive.usercontent.google.com/u/0/uc?id=1uq1YFRqrk0ZLkgwOHJnTM7NPYRpGbLtm&export=download";
+
+    // Social media links
+    const socialMediaLinks = [
+        { Icon: FaFacebook, link: "https://www.facebook.com/profile.php?id=100088205996277" },
+        { Icon: FaLinkedin, link: "https://www.linkedin.com/in/tonmoy-ahamed/" },
+        { Icon: FaTwitter, link: "https://x.com/TasrikAhamed25" },
+        { Icon: FaYoutube, link: "https://www.youtube.com/channel/UC6PJo-xtjC75acolcTBvzBQ" },
+    ];
 
     return (
         <div className="relative md:p-0 p-5 mb-10 min-h-[650px] bg-[#1D1730] text-white px-5">
@@ -29,7 +35,6 @@ const Banner = () => {
                         I am a
                         <Typewriter
                             words={["Web Developer", "Frontend Developer", "Programmer", "Coder", "Backend Developer", "React Developer", "Next.js Developer"]}
-
                             loop={Infinity}
                             cursor
                             cursorStyle="|"
@@ -63,14 +68,17 @@ const Banner = () => {
                     <div className="mt-10">
                         <p className="text-lg text-gray-300">Find Me On</p>
                         <div className="flex justify-center md:justify-start gap-4 mt-2">
-                            {[FaFacebook, LiaLinkedin, FaXTwitter, BsYoutube].map((Icon, index) => (
-                                <motion.button
+                            {socialMediaLinks.map((item, index) => (
+                                <motion.a
                                     key={index}
+                                    href={item.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     whileHover={{ scale: 1.2, rotate: 10 }}
                                     className="bg-[#2B2344] p-4 rounded-md transition-all"
                                 >
-                                    <Icon className="text-xl" />
-                                </motion.button>
+                                    <item.Icon className="text-xl text-white" />
+                                </motion.a>
                             ))}
                         </div>
                     </div>
