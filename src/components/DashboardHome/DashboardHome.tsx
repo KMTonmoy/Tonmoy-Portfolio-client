@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import CountUp from 'react-countup';
 import { FaUser, FaProjectDiagram, FaNewspaper } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 
 interface DashboardCardProps {
     title: string;
@@ -9,12 +10,21 @@ interface DashboardCardProps {
     icon: React.ReactNode;
 }
 
+interface Message {
+    _id: string;
+    email: string;
+    name: string;
+    message: string;
+}
+
 const DashboardHome = () => {
     const [alldata, setAllData] = useState([]);
     const [blogsdata, setBlogs] = useState([]);
     const [projects, setProjects] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [message, setmessage] = useState<Message[]>([]);
     const [error, setError] = useState<string | null>(null);
+    const [selectedMessage, setSelectedMessage] = useState<Message | null>(null);
 
     useEffect(() => {
         setLoading(true);
@@ -34,6 +44,7 @@ const DashboardHome = () => {
                 setLoading(false);
             });
     }, []);
+
     useEffect(() => {
         setLoading(true);
         fetch(`http://localhost:8000/projects`)
@@ -49,6 +60,7 @@ const DashboardHome = () => {
                 setLoading(false);
             });
     }, []);
+
     useEffect(() => {
         setLoading(true);
         fetch(`http://localhost:8000/blogs`)
@@ -65,6 +77,30 @@ const DashboardHome = () => {
             });
     }, []);
 
+    useEffect(() => {
+        setLoading(true);
+        fetch(`http://localhost:8000/message`)
+            .then(res => {
+                return res.json();
+            })
+            .then(data => {
+                setmessage(data);
+                setLoading(false);
+            })
+            .catch(err => {
+                setError(err.message);
+                setLoading(false);
+            });
+    }, []);
+
+    const handleReadMessage = (message: Message) => {
+        setSelectedMessage(message);
+    };
+
+    const closeModal = () => {
+        setSelectedMessage(null);
+    };
+
     if (loading) {
         return (
             <div className="flex justify-center items-center h-full">Loading...</div>
@@ -76,12 +112,12 @@ const DashboardHome = () => {
     }
 
     return (
-        <div className="p-8">
-            <h1 className="text-4xl font-bold text-center mb-6 text-[#F43F5E]">
+        <div className="p-8 min-h-screen">
+            <h1 className="text-4xl  font-bold text-center mb-6 text-[#F43F5E]">
                 Welcome to Your Dashboard
             </h1>
 
-            <div className="flex flex-wrap justify-center gap-8 z-0">
+            <div className="flex  flex-wrap justify-center gap-8 z-0">
                 <DashboardCard
                     title="Total Users"
                     count={alldata.length}
@@ -97,7 +133,56 @@ const DashboardHome = () => {
                     count={blogsdata.length}
                     icon={<FaNewspaper className="text-[#F43F5E] text-4xl" />}
                 />
+                <DashboardCard
+                    title="Total Messages"
+                    count={message.length}
+                    icon={<FaNewspaper className="text-[#F43F5E] text-4xl" />}
+                />
             </div>
+
+            <div className="  mt-8">
+                <h1 className="text-4xl  font-bold text-center mb-6 text-[#F43F5E]">
+                    Messages
+                </h1>
+                {message.map((msg) => (
+                    <motion.div
+                        key={msg._id}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        whileHover={{ scale: 1.05 }}
+                        className="bg-white text-black p-6 sm:p-8 rounded-lg shadow-lg min-h-60 flex flex-col justify-between max-w-sm mx-auto"
+                    >
+                        <h2 className="text-2xl font-semibold">{msg.name}</h2>
+                        <p className="text-lg text-gray-600">{msg.email}</p>
+                        <button
+                            onClick={() => handleReadMessage(msg)}
+                            className="mt-4 bg-[#F43F5E] text-white py-3 px-6 rounded-lg text-lg"
+                        >
+                            Read Message
+                        </button>
+                    </motion.div>
+                ))}
+            </div>
+
+            {selectedMessage && (
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="fixed inset-0 flex justify-center items-center bg-gray-700 bg-opacity-50"
+                >
+                    <div className="bg-white text-black p-6 rounded-lg max-w-lg w-full">
+                        <h2 className="text-2xl font-bold mb-4">Message from {selectedMessage.name}</h2>
+                        <p className="text-gray-800">{selectedMessage.message}</p>
+                        <button
+                            onClick={closeModal}
+                            className="mt-4 bg-[#F43F5E] text-white py-1 px-4 rounded"
+                        >
+                            Close
+                        </button>
+                    </div>
+                </motion.div>
+            )}
         </div>
     );
 };
