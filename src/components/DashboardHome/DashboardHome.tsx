@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import CountUp from 'react-countup';
-import { FaUser } from 'react-icons/fa';
+import { FaUser, FaProjectDiagram, FaNewspaper } from 'react-icons/fa';
 
 interface DashboardCardProps {
     title: string;
@@ -90,12 +90,12 @@ const DashboardHome = () => {
                 <DashboardCard
                     title="Total Projects"
                     count={projects.length}
-                    icon={<FaUser className="text-[#F43F5E] text-4xl" />}
+                    icon={<FaProjectDiagram className="text-[#F43F5E] text-4xl" />}
                 />
                 <DashboardCard
-                    title="Total Projects"
+                    title="Total Blogs"
                     count={blogsdata.length}
-                    icon={<FaUser className="text-[#F43F5E] text-4xl" />}
+                    icon={<FaNewspaper className="text-[#F43F5E] text-4xl" />}
                 />
             </div>
         </div>

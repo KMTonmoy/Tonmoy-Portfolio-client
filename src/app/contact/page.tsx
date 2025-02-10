@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
 
 const Contact = () => {
     const [formData, setFormData] = useState({ name: "", email: "", message: "" });
@@ -19,24 +18,19 @@ const Contact = () => {
         setError(null);
         setSuccess(null);
 
-        try {
-            const response = await fetch("https://formspree.io/f/mwpvqjde", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(formData),
-            });
+        const response = await fetch("https://formspree.io/f/mwpvqjde", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(formData),
+        });
 
-            if (response.ok) {
-                setSuccess("Message sent successfully!");
-                setFormData({ name: "", email: "", message: "" });
-            } else {
-                setError("Failed to send message. Please try again.");
-            }
-        } catch (err) {
-            setError("Something went wrong.");
-        } finally {
-            setLoading(false);
+        if (response.ok) {
+            setSuccess("Message sent successfully!");
+            setFormData({ name: "", email: "", message: "" });
+        } else {
+            setError("Failed to send message. Please try again.");
         }
+
     };
 
     return (
