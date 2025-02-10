@@ -1,0 +1,42 @@
+[
+    {
+        "title": "Project 1",
+        "type": "web",
+        "languages": [
+            "react",
+            "nextjs",
+            "tailwindcss",
+            "html",
+            "css"
+        ],
+        "image": "https://cdn.pixabay.com/photo/2021/12/29/02/10/idea-6900632_640.png",
+        "liveLink": "live-demo-link",
+        "githubClient": "client-github-link",
+        "githubServer": "server-github-link"
+    },
+    {
+        "title": "Project 2",
+        "type": "mobile",
+        "languages": [
+            "react",
+            "tailwindcss",
+            "css"
+        ],
+        "image": "https://img.freepik.com/premium-vector/project-management-marketing-analysis-development-online-successful-strategy-motivation_501813-2156.jpg?semt=ais_hybrid",
+        "liveLink": "live-demo-link",
+        "githubClient": "client-github-link",
+        "githubServer": "server-github-link"
+    },
+    {
+        "title": "Project 3",
+        "type": "web",
+        "languages": [
+            "html",
+            "css"
+        ],
+        "image": "https://media.istockphoto.com/id/1465188429/photo/business-performance-monitoring-concept-businessman-using-smartphone-online-survey-filling.jpg?s=612x612&w=0&k=20&c=7c47U-ZeTVL4H1_jPyO-8V3mKVPbeDb25oOxIV7NoEE=",
+        "liveLink": "live-demo-link",
+        "githubClient": "client-github-link",
+        "githubServer": "server-github-link"
+    }
+]

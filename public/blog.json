@@ -1,0 +1,38 @@
+[
+    {
+        "title": "Mastering React: A Beginner's Guide",
+        "description": "React.js is a powerful JavaScript library for building user interfaces. This guide will walk you through its core concepts, including components, state, and props.",
+        "image": "https://media.licdn.com/dms/image/v2/D4D12AQEKOKI_U51lbA/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1711134118837?e=2147483647&v=beta&t=miQpqeb_U-HPLrlqfRtT_InvlbjdNU26SSlDe0pHiso",
+        "content": "React.js is one of the most popular JavaScript libraries for frontend development. It allows developers to build reusable UI components and manage application state effectively..."
+    },
+    {
+        "title": "Understanding Next.js: The Future of Web Development",
+        "description": "Next.js is a React-based framework that simplifies server-side rendering (SSR) and static site generation (SSG). Learn how to leverage its powerful features.",
+        "image": "https://media.licdn.com/dms/image/v2/D5612AQHYpuOH0s5unA/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1727454093786?e=2147483647&v=beta&t=97_SdLsPSo8Jal9f1KYBjAFnuFAGwIaMFo0gTZq1e3w",
+        "content": "Next.js is built on top of React.js and provides key features like server-side rendering (SSR) and static site generation (SSG). These features improve website performance and SEO..."
+    },
+    {
+        "title": "Tailwind CSS: The Ultimate Guide",
+        "description": "Tailwind CSS is a utility-first framework that makes styling easier and faster. Learn how to use its powerful classes to build stunning UIs.",
+        "image": "https://img-c.udemycdn.com/course/750x422/3436416_fcf1.jpg",
+        "content": "Tailwind CSS allows developers to create highly customizable designs using predefined utility classes. Unlike traditional CSS frameworks, it provides flexibility without writing custom styles..."
+    },
+    {
+        "title": "MongoDB: A NoSQL Database for Modern Applications",
+        "description": "MongoDB is a document-based NoSQL database that provides high performance and scalability. Learn how it differs from traditional relational databases.",
+        "image": "https://www.digitalocean.com/api/static-content/v1/images?src=https%3A%2F%2Fcommunity-cdn-digitalocean-com.global.ssl.fastly.net%2FuCcwj4q1e8Tx91Ce5En11NdE&width=1920",
+        "content": "MongoDB stores data in JSON-like documents, making it highly flexible and scalable. Unlike SQL databases, it doesn’t require a fixed schema, allowing developers to adapt quickly..."
+    },
+    {
+        "title": "JavaScript ES6 Features You Must Know",
+        "description": "ECMAScript 6 (ES6) introduced powerful new features like arrow functions, template literals, and async/await. Master these features to improve your JavaScript skills.",
+        "image": "https://miro.medium.com/v2/resize:fit:1400/1*sLzhBnQM--_-NfC8xiiEiA.png",
+        "content": "ES6 brought a range of new JavaScript features, including let and const for better variable scoping, template literals for string manipulation, and the spread operator for easier array and object handling..."
+    },
+    {
+        "title": "The Importance of Git & GitHub for Developers",
+        "description": "Git is a version control system that helps developers manage code changes, while GitHub allows collaboration. Learn how to use them effectively.",
+        "image": "https://miro.medium.com/v2/resize:fit:640/1*jcjNO2oiYZ_36bYEgPiARg.png",
+        "content": "Git provides a distributed version control system that tracks code changes, making collaboration easier. GitHub enhances this by allowing developers to host and share repositories..."
+    }
+]
