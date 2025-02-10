@@ -1,8 +1,9 @@
 'use client';
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useEffect, useState, ReactNode } from 'react';
 import { useRouter } from 'next/navigation';
 import {
     GoogleAuthProvider,
+    User,
     createUserWithEmailAndPassword,
     getAuth,
     onAuthStateChanged,
@@ -14,17 +15,31 @@ import {
 import { app } from '../firebase/firebase.config';
 import axios from 'axios';
 
-export const AuthContext = createContext(null);
+interface AuthContextType {
+    user: User | null;
+    loading: boolean;
+    createUser: (email: string, password: string) => Promise<void>;
+    signIn: (email: string, password: string) => Promise<void>;
+    signInWithGoogle: () => Promise<void>;
+    logOut: () => Promise<void>;
+    updateUserProfile: (name: string, photo: string) => Promise<void>;
+}
+
+export const AuthContext = createContext<AuthContextType | null>(null);
 
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
 
-const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true);
+interface AuthProviderProps {
+    children: ReactNode;
+}
+
+const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
+    const [user, setUser] = useState<User | null>(null);
+    const [loading, setLoading] = useState<boolean>(true);
     const router = useRouter();
 
-    const createUser = async (email, password) => {
+    const createUser = async (email: string, password: string) => {
         setLoading(true);
         try {
             await createUserWithEmailAndPassword(auth, email, password);
@@ -37,7 +52,7 @@ const AuthProvider = ({ children }) => {
         }
     };
 
-    const signIn = async (email, password) => {
+    const signIn = async (email: string, password: string) => {
         setLoading(true);
         try {
             await signInWithEmailAndPassword(auth, email, password);
@@ -66,9 +81,7 @@ const AuthProvider = ({ children }) => {
     const logOut = async () => {
         setLoading(true);
         try {
-            await axios.get(`http://localhost:8000/logout`, {
-                withCredentials: true,
-            });
+            await axios.get(`http://localhost:8000/logout`, { withCredentials: true });
             await signOut(auth);
             router.push('/login');
         } catch (error) {
@@ -79,39 +92,29 @@ const AuthProvider = ({ children }) => {
         }
     };
 
-    const updateUserProfile = async (name, photo) => {
+    const updateUserProfile = async (name: string, photo: string) => {
+        if (!auth.currentUser) return;
         try {
-            await updateProfile(auth.currentUser, {
-                displayName: name,
-                photoURL: photo,
-            });
+            await updateProfile(auth.currentUser, { displayName: name, photoURL: photo });
         } catch (error) {
             console.error('Error updating user profile:', error);
             throw error;
         }
     };
 
-    const saveUser = async user => {
+    const saveUser = async (user: User) => {
         try {
-            const existingUserResponse = await axios.get(
-                `http://localhost:8000/users/${user?.email}`
-            );
+            const existingUserResponse = await axios.get(`http://localhost:8000/users/${user.email}`);
             const existingUser = existingUserResponse.data;
-
-            if (existingUser) {
-                return existingUser;
-            }
+            if (existingUser) return existingUser;
 
             const currentUser = {
-                email: user?.email,
-                name: user?.displayName,
-                photo: user?.photoURL,
+                email: user.email,
+                name: user.displayName,
+                photo: user.photoURL,
                 role: 'user',
             };
-            const { data } = await axios.put(
-                `http://localhost:8000/user`,
-                currentUser
-            );
+            const { data } = await axios.put(`http://localhost:8000/user`, currentUser);
             return data;
         } catch (error) {
             console.error('Error saving user:', error);
@@ -120,7 +123,7 @@ const AuthProvider = ({ children }) => {
     };
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, async currentUser => {
+        const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
             setUser(currentUser);
             if (currentUser) {
                 setTimeout(async () => {
@@ -129,16 +132,14 @@ const AuthProvider = ({ children }) => {
                     } catch (error) {
                         console.error('Error handling auth state change:', error);
                     }
-                }, 5000); // Delayed save operation for 5 seconds
-            } else {
-                // If there is no current user, you might not need this logic
+                }, 5000);
             }
             setLoading(false);
         });
         return () => unsubscribe();
     }, []);
 
-    const authInfo = {
+    const authInfo: AuthContextType = {
         user,
         loading,
         createUser,
@@ -148,9 +149,7 @@ const AuthProvider = ({ children }) => {
         updateUserProfile,
     };
 
-    return (
-        <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
-    );
+    return <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>;
 };
 
 export default AuthProvider;
