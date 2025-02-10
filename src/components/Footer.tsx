@@ -4,7 +4,7 @@ import { FaFacebookF, FaDribbble, FaBehance } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#1D1730]  shadow-white shadow-2xl text-white py-10">
+    <footer className="bg-[#1D1730]   shadow-white shadow-2xl text-white py-10">
       <div className="max-w-7xl mx-auto flex flex-col items-center text-center gap-4">
         {/* Say Hi Section */}
         <h2 className="text-2xl font-semibold">Lets Say Hi 👋</h2>

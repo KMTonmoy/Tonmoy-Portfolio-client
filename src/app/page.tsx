@@ -7,6 +7,7 @@ import React from 'react';
 import Projects from './projects/page';
 import Testimonial from '@/components/Testimnial';
 import BlogsPage from './blog/page';
+import Contact from './contact/page';
 
 const page = () => {
   return (
@@ -19,6 +20,7 @@ const page = () => {
       <Projects />
       <Testimonial />
       <BlogsPage />
+      <Contact/>
     </div>
   );
 };
