@@ -144,24 +144,26 @@ const DashboardHome = () => {
                 <h1 className="text-4xl  font-bold text-center mb-6 text-[#F43F5E]">
                     Messages
                 </h1>
-                {message.map((msg) => (
-                    <motion.div
-                        key={msg._id}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        whileHover={{ scale: 1.05 }}
-                        className="bg-white text-black p-6 sm:p-8 rounded-lg shadow-lg min-h-60 flex flex-col justify-between max-w-sm mx-auto"
-                    >
-                        <h2 className="text-2xl font-semibold">{msg.name}</h2>
-                        <p className="text-lg text-gray-600">{msg.email}</p>
-                        <button
-                            onClick={() => handleReadMessage(msg)}
-                            className="mt-4 bg-[#F43F5E] text-white py-3 px-6 rounded-lg text-lg"
+                <div className='grid md:grid-cols-3 grid-cols-1 gap-5 '>
+                    {message.map((msg) => (
+                        <motion.div
+                            key={msg._id}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            whileHover={{ scale: 1.05 }}
+                            className="bg-white text-black p-6 sm:p-8 rounded-lg shadow-lg min-h-60 flex flex-col justify-between max-w-sm mx-auto"
                         >
-                            Read Message
-                        </button>
-                    </motion.div>
-                ))}
+                            <h2 className="text-2xl font-semibold">{msg.name}</h2>
+                            <p className="text-lg text-gray-600">{msg.email}</p>
+                            <button
+                                onClick={() => handleReadMessage(msg)}
+                                className="mt-4 bg-[#F43F5E] text-white py-3 px-6 rounded-lg text-lg"
+                            >
+                                Read Message
+                            </button>
+                        </motion.div>
+                    ))}
+                </div>
             </div>
 
             {selectedMessage && (
