@@ -1,9 +1,9 @@
 "use client";
-
 import { registerUser } from "@/utils/actions/registerUser";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 
 export type UserData = {
     username: string;
@@ -21,90 +21,99 @@ const RegisterPage = () => {
     const router = useRouter();
 
     const onSubmit = async (data: UserData) => {
-        // console.log(data);
-
-        const res = await registerUser(data);
-        if (res.success) {
-            alert(res.message);
-            router.push("/login");
+        try {
+            const res = await registerUser(data);
+            if (res.success) {
+                Swal.fire({
+                    icon: "success",
+                    title: "Registration Successful!",
+                    text: res.message,
+                    confirmButtonColor: "#F95353",
+                }).then(() => {
+                    router.push("/login");
+                });
+            } else {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops!",
+                    text: res.message || "Something went wrong, please try again.",
+                    confirmButtonColor: "#F95353",
+                });
+            }
+        } catch (error) {
+            Swal.fire({
+                icon: "error",
+                title: "Error!",
+                text: "Failed to register. Please try again later.",
+                confirmButtonColor: "#F95353",
+            });
+            console.log(error);
         }
-
     };
 
     return (
-        <div className="my-10">
-            <h1 className="text-center text-4xl font-bold mb-5">
-                Register <span className="text-teal-500">Now</span>
-            </h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                <div>
-                    <img
-                        src="https://img.freepik.com/free-vector/mobile-login-concept-illustration_114360-135.jpg?t=st=1710081713~exp=1710085313~hmac=f637c194f1f143e63a84950cbf978997453777c872adf4aebbbecdaa445601a1&w=740"
-                        width={500}
-                        height={200}
-                        alt="login page"
-                        className="w-full h-[85%] object-cover"
-                    />
-                </div>
+        <div className="my-10 w-[90%] min-h-screen mx-auto flex items-center justify-center">
+            <div className="md:w-[40%] w-full bg-[#1b172e] shadow-2xl p-8 rounded-lg border border-[#292148]">
+                <h1 className="text-center text-4xl mb-6 font-bold text-[#F95353]">
+                    Register <span className="text-white">Now</span>
+                </h1>
 
-                <div className="w-[80%] mx-auto bg-white p-6 shadow-lg rounded-lg">
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                        <div className="mb-4">
-                            <label className="block text-gray-700 font-medium mb-2">
-                                Full Name
-                            </label>
-                            <input
-                                type="text"
-                                {...register("username")}
-                                placeholder="User Name"
-                                className="w-full p-3 border border-gray-300 text-black rounded "
-                                required
-                            />
-                        </div>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <div className="mb-6">
+                        <label className="block text-sm font-medium text-gray-300">
+                            Full Name
+                        </label>
+                        <input
+                            type="text"
+                            {...register("username")}
+                            placeholder="Enter your full name"
+                            className="mt-1 block w-full px-4 py-2 border border-gray-500 text-white bg-[#1e1b2d] rounded-md shadow-sm sm:text-sm focus:outline-none focus:ring-[#F95353] focus:border-[#F95353]"
+                            required
+                        />
+                    </div>
 
-                        <div className="mb-4">
-                            <label className="block text-gray-700 font-medium mb-2">
-                                Email
-                            </label>
-                            <input
-                                type="email"
-                                {...register("email")}
-                                placeholder="Email"
-                                className="w-full p-3 border border-gray-300 text-black rounded "
-                                required
-                            />
-                        </div>
+                    <div className="mb-6">
+                        <label className="block text-sm font-medium text-gray-300">
+                            Email
+                        </label>
+                        <input
+                            type="email"
+                            {...register("email")}
+                            placeholder="Enter your email"
+                            className="mt-1 block w-full px-4 py-2 border border-gray-500 text-white bg-[#1e1b2d] rounded-md shadow-sm sm:text-sm focus:outline-none focus:ring-[#F95353] focus:border-[#F95353]"
+                            required
+                        />
+                    </div>
 
-                        <div className="mb-6">
-                            <label className="block text-gray-700 font-medium mb-2">
-                                Password
-                            </label>
-                            <input
-                                {...register("password")}
-                                type="password"
-                                placeholder="Password"
-                                className="w-full p-3 border border-gray-300 text-black rounded "
-                                required
-                            />
-                        </div>
+                    <div className="mb-6">
+                        <label className="block text-sm font-medium text-gray-300">
+                            Password
+                        </label>
+                        <input
+                            type="password"
+                            {...register("password")}
+                            placeholder="Enter your password"
+                            className="mt-1 block w-full px-4 py-2 border border-gray-500 text-white bg-[#1e1b2d] rounded-md shadow-sm sm:text-sm focus:outline-none focus:ring-[#F95353] focus:border-[#F95353]"
+                            required
+                        />
+                    </div>
 
-                        <div className="mb-4">
-                            <button
-                                type="submit"
-                                className="w-full border border-teal-500 text-teal-500 font-semibold py-2 px-4 rounded-md shadow-md hover:bg-teal-500 hover:text-black"
-                            >
-                                Register
-                            </button>
-                        </div>
+                    <div>
+                        <button
+                            type="submit"
+                            className="w-full border border-[#F95353] text-[#F95353] font-semibold py-2 px-4 rounded-md shadow-md hover:bg-[#F95353] hover:text-white transition"
+                        >
+                            Register
+                        </button>
+                    </div>
+                </form>
 
-                        <p className="text-center text-gray-600">
-                            Already have an account?{" "}
-                            <Link className="text-teal-500 hover:underline" href="/login">
-                                Login
-                            </Link>
-                        </p>
-                    </form>
-                </div>
+                <p className="text-center mt-4 text-sm text-gray-400">
+                    Already have an account?{" "}
+                    <Link href="/login" className="text-[#F95353] hover:underline">
+                        Login here
+                    </Link>
+                </p>
             </div>
         </div>
     );
