@@ -41,13 +41,12 @@ const Projects = () => {
           Explore my latest web development projects built with modern technologies.
         </p>
         <div className="flex justify-center space-x-4 mb-10">
-          {["all", "react", "nextjs"].map((lang) => (
+          {["all", "react", "next"].map((lang) => (
             <button
               key={lang}
               onClick={() => setActiveLanguage(lang)}
-              className={`py-2 px-4 rounded-lg transition-all duration-300 ${
-                activeLanguage === lang ? "bg-[#F95353] text-white" : "bg-[#292148] text-white hover:bg-[#F95353]"
-              }`}
+              className={`py-2 px-4 rounded-lg transition-all duration-300 ${activeLanguage === lang ? "bg-[#F95353] text-white" : "bg-[#292148] text-white hover:bg-[#F95353]"
+                }`}
             >
               {lang === "all" ? "All" : lang.charAt(0).toUpperCase() + lang.slice(1)}
             </button>
