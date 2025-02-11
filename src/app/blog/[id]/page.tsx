@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet';
 
 interface Blog {
     _id: string;
@@ -55,6 +56,10 @@ const BlogDetailsPage = () => {
             className="min-h-screen bg-[#1D1730] text-white px-6 py-10"
         >
             <div className="max-w-4xl mx-auto bg-[#292148] p-6 rounded-lg shadow-lg">
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>ProView | Blogs Details</title>
+            </Helmet>
                 <motion.img 
                     src={blog.image} 
                     alt={blog.title} 

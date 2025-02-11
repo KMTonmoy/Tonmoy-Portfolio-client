@@ -1,5 +1,6 @@
 'use client'
 import React, { useState, useEffect } from "react";
+import { Helmet } from "react-helmet";
 import Swal from "sweetalert2";
 
 interface Blog {
@@ -102,6 +103,10 @@ const BlogsManagePage = () => {
 
     return (
         <div className="max-w-7xl mx-auto text-black p-6">
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>ProView | ManageBlog</title>
+            </Helmet>
             <h1 className="text-3xl font-bold mb-6 text-center text-white">Manage Blogs</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div className="bg-gray-200 flex justify-center items-center rounded-lg p-6 cursor-pointer hover:bg-gray-300 transition" onClick={() => setIsModalOpen(true)}>

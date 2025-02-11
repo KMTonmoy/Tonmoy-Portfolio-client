@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet';
 
 interface Blog {
     _id: string;
@@ -29,6 +30,10 @@ const BlogsPage = () => {
 
     return (
         <div className="min-h-screen text-white px-6 py-10">
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>ProView | Blog</title>
+            </Helmet>
             <p className="italic text-center font-medium text-lg">
                 Blogs <span className="text-[#F95353]">.....</span>
             </p>

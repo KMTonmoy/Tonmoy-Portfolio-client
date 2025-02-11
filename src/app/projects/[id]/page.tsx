@@ -1,6 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { useRouter, useParams } from 'next/navigation';
+import { Helmet } from 'react-helmet';
 
 interface Project {
     _id: string;
@@ -35,6 +36,10 @@ const ProjectDetails = () => {
     return (
         <div className="min-h-screen bg-[#1D1730] text-white px-6 py-10">
             <div className="max-w-4xl mx-auto bg-[#292148] p-6 rounded-lg shadow-lg">
+                <Helmet>
+                    <meta charSet="utf-8" />
+                    <title>ProView | Project Details</title>
+                </Helmet>
                 <img src={project?.image} alt={project?.title} className="w-full h-64 object-cover rounded-lg" />
                 <h1 className="text-3xl font-bold mt-4">{project?.title}</h1>
                 <p className="mt-2 text-gray-300">{project?.type}</p>

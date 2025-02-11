@@ -1,6 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet';
 
 interface Message {
     id: number;
@@ -42,6 +43,10 @@ const Page = () => {
     return (
         <div className="p-6 sm:p-8 md:p-10 lg:p-12">
             <h1 className="text-3xl font-bold text-center text-gray-800 mb-8">Messages</h1>
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>ProView | messages</title>
+            </Helmet>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {messages.map((msg) => (
                     <motion.div

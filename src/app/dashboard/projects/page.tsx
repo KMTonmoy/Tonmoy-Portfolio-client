@@ -1,5 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
 import Swal from 'sweetalert2';
 
 interface Project {
@@ -134,6 +135,10 @@ const ProjectManagement = () => {
     return (
         <div className="p-8 text-gray-800">
             <h1 className="text-3xl font-semibold text-center mb-8">Project Management</h1>
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>ProView | Projects</title>
+            </Helmet>
             <button
                 className="bg-indigo-600 text-white px-6 py-3 rounded-md shadow-lg hover:bg-indigo-700 transition"
                 onClick={() => openModal()}

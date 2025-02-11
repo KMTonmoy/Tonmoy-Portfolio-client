@@ -3,12 +3,17 @@ import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import MyImage from "../../images/MyPhoto.png";
+import { Helmet } from "react-helmet";
 
 const About = () => {
     return (
         <div className="bg-[#1D1730] text-white py-16 px-5 md:px-10">
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>ProView | About</title>
+            </Helmet>
             <div className="max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center gap-10">
-                
+
                 {/* Left Side - About Me */}
                 <motion.div
                     className="flex-1 text-center md:text-left"
@@ -24,7 +29,7 @@ const About = () => {
                             Professional Web Developer
                         </h1>
                         <p className="mt-5 text-lg text-gray-300 leading-relaxed">
-                            I specialize in crafting modern, responsive, and user-friendly web applications with a strong focus on performance, accessibility, and scalability. 
+                            I specialize in crafting modern, responsive, and user-friendly web applications with a strong focus on performance, accessibility, and scalability.
                             With expertise in the <span className="text-[#F95353] font-semibold">MERN stack</span>, I develop high-quality web solutions tailored to meet business needs.
                         </p>
                         <p className="mt-5 text-lg text-gray-300 leading-relaxed">

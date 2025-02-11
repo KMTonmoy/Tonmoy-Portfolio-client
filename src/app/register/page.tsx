@@ -2,6 +2,7 @@
 import { registerUser } from "@/utils/actions/registerUser";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 
@@ -53,6 +54,10 @@ const RegisterPage = () => {
 
     return (
         <div className="my-10 w-[90%] min-h-screen mx-auto flex items-center justify-center">
+                <Helmet>
+                <meta charSet="utf-8" />
+                <title>ProView | Register</title>
+            </Helmet>
             <div className="md:w-[40%] w-full bg-[#1b172e] shadow-2xl p-8 rounded-lg border border-[#292148]">
                 <h1 className="text-center text-4xl mb-6 font-bold text-[#F95353]">
                     Register <span className="text-white">Now</span>

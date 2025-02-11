@@ -2,6 +2,7 @@
 import { loginUser } from "@/utils/actions/loginUser";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 
@@ -50,7 +51,10 @@ const LoginPage = () => {
         <h1 className="text-center text-4xl mb-6 font-bold text-[#F95353]">
           Login <span className="text-white">Here</span>
         </h1>
-
+        <Helmet>
+                <meta charSet="utf-8" />
+                <title>ProView | Login</title>
+            </Helmet>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-6">
             <label className="block text-sm font-medium text-gray-300">Email</label>

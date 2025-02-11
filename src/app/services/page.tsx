@@ -2,10 +2,15 @@
 import React from "react";
 import { FaCode, FaLaptopCode, FaRocketchat } from "react-icons/fa"; // Icons from react-icons
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet";
 
 const MyServices = () => {
     return (
         <div className="bg-[#1D1730] py-16">
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>ProView | Services</title>
+            </Helmet>
             <p className="italic text-center font-medium text-lg text-white">
                 Services <span className="text-[#F95353]">.....</span>
             </p>

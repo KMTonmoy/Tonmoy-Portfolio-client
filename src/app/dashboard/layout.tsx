@@ -9,6 +9,7 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
     return (
         <div>
+
             <div className="flex">
                 <Sidebar />
                 <main className="flex justify-center w-full">{children}</main>

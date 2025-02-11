@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet";
 
 const Contact = () => {
     const [formData, setFormData] = useState({ name: "", email: "", message: "" });
@@ -40,6 +41,10 @@ const Contact = () => {
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-[#1D1730] text-white px-5">
+                <Helmet>
+                <meta charSet="utf-8" />
+                <title>ProView | Contact</title>
+            </Helmet>
             <motion.div
                 className="w-full max-w-5xl flex bg-[#25203E] rounded-lg shadow-lg overflow-hidden"
                 initial={{ opacity: 0, scale: 0.9 }}
