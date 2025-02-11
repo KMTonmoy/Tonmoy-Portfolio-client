@@ -17,7 +17,7 @@ const BlogsPage = () => {
     useEffect(() => {
         const fetchBlogs = async () => {
             try {
-                const response = await fetch('http://localhost:8000/blogs');
+                const response = await fetch('https://tonmoy-portfolio-server-rosy.vercel.app/blogs');
                 const data: Blog[] = await response.json();
                 setBlogs(data);
             } catch (error) {

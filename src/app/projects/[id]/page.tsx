@@ -22,7 +22,7 @@ const ProjectDetails = () => {
         const fetchProject = async () => {
             if (!params?.id) return;
             try {
-                const response = await fetch(`http://localhost:8000/projects/${params.id}`);
+                const response = await fetch(`https://tonmoy-portfolio-server-rosy.vercel.app/projects/${params.id}`);
                 const data: Project = await response.json();
                 setProject(data);
             } catch (error) {

@@ -3,7 +3,7 @@
 import { FormValues } from "@/app/login/page";
 
 export const loginUser = async (data: FormValues) => {
-    const res = await fetch(`http://localhost:8000/login`, {
+    const res = await fetch(`https://tonmoy-portfolio-server-rosy.vercel.app/login`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

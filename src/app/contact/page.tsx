@@ -19,7 +19,7 @@ const Contact = () => {
         setSuccess(null);
 
         try {
-            const response = await fetch("http://localhost:8000/messagePost", { // Change to your API URL
+            const response = await fetch("https://tonmoy-portfolio-server-rosy.vercel.app/messagePost", { // Change to your API URL
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formData),

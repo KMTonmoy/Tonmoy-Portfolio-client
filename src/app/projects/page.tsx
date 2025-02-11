@@ -19,7 +19,7 @@ const Projects = () => {
 
   useEffect(() => {
     const fetchProjects = async () => {
-      const response = await fetch("http://localhost:8000/projects");
+      const response = await fetch("https://tonmoy-portfolio-server-rosy.vercel.app/projects");
       const data: Project[] = await response.json();
       setProjects(data);
     };

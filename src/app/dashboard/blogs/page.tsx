@@ -25,7 +25,7 @@ const BlogsManagePage = () => {
     const [editBlog, setEditBlog] = useState<Blog | null>(null);
 
     useEffect(() => {
-        fetch("http://localhost:8000/blogs")
+        fetch("https://tonmoy-portfolio-server-rosy.vercel.app/blogs")
             .then((res) => res.json())
             .then((data) => setBlogs(data))
             .catch((err) => console.error("Error fetching blogs:", err));
@@ -37,7 +37,7 @@ const BlogsManagePage = () => {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const response = await fetch("http://localhost:8000/blogs", {
+        const response = await fetch("https://tonmoy-portfolio-server-rosy.vercel.app/blogs", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(newBlog),
@@ -61,7 +61,7 @@ const BlogsManagePage = () => {
         });
 
         if (confirmDelete.isConfirmed) {
-            const response = await fetch(`http://localhost:8000/blogs/${id}`, {
+            const response = await fetch(`https://tonmoy-portfolio-server-rosy.vercel.app/blogs/${id}`, {
                 method: "DELETE",
             });
 
@@ -87,7 +87,7 @@ const BlogsManagePage = () => {
         e.preventDefault();
         if (!editBlog) return;
 
-        const response = await fetch(`http://localhost:8000/blogs/${editBlog._id}`, {
+        const response = await fetch(`https://tonmoy-portfolio-server-rosy.vercel.app/blogs/${editBlog._id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(editBlog),

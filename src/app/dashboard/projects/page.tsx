@@ -36,7 +36,7 @@ const ProjectManagement = () => {
 
     const fetchProjects = async () => {
         try {
-            const res = await fetch('http://localhost:8000/projects');
+            const res = await fetch('https://tonmoy-portfolio-server-rosy.vercel.app/projects');
             const data = await res.json();
             setProjects(data);
         } catch (error) {
@@ -72,7 +72,7 @@ const ProjectManagement = () => {
 
     const addProject = async () => {
         try {
-            await fetch('http://localhost:8000/projects', {
+            await fetch('https://tonmoy-portfolio-server-rosy.vercel.app/projects', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(newProject),
@@ -88,7 +88,7 @@ const ProjectManagement = () => {
     const updateProject = async () => {
         if (editId) {
             try {
-                await fetch(`http://localhost:8000/projectsup/${editId}`, {
+                await fetch(`https://tonmoy-portfolio-server-rosy.vercel.app/projectsup/${editId}`, {
                     method: 'PUT',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(newProject),
@@ -104,7 +104,7 @@ const ProjectManagement = () => {
 
     const deleteProject = async (id: string) => {
         try {
-            await fetch(`http://localhost:8000/projects/${id}`, { method: 'DELETE' });
+            await fetch(`https://tonmoy-portfolio-server-rosy.vercel.app/projects/${id}`, { method: 'DELETE' });
             fetchProjects();
             Swal.fire('Deleted!', 'Your project has been deleted.', 'success');
         } catch (error) {

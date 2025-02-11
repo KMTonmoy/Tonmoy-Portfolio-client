@@ -16,7 +16,7 @@ const Page = () => {
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        fetch(`http://localhost:8000/message`)
+        fetch(`https://tonmoy-portfolio-server-rosy.vercel.app/message`)
             .then(res => res.json())
             .then(data => {
                 setMessages(data);

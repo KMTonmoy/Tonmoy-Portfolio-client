@@ -28,7 +28,7 @@ const DashboardHome = () => {
 
     useEffect(() => {
         setLoading(true);
-        fetch(`http://localhost:8000/users`)
+        fetch(`https://tonmoy-portfolio-server-rosy.vercel.app/users`)
             .then(res => {
                 if (!res.ok) {
                     throw new Error('Network response was not ok');
@@ -47,7 +47,7 @@ const DashboardHome = () => {
 
     useEffect(() => {
         setLoading(true);
-        fetch(`http://localhost:8000/projects`)
+        fetch(`https://tonmoy-portfolio-server-rosy.vercel.app/projects`)
             .then(res => {
                 return res.json();
             })
@@ -63,7 +63,7 @@ const DashboardHome = () => {
 
     useEffect(() => {
         setLoading(true);
-        fetch(`http://localhost:8000/blogs`)
+        fetch(`https://tonmoy-portfolio-server-rosy.vercel.app/blogs`)
             .then(res => {
                 return res.json();
             })
@@ -79,7 +79,7 @@ const DashboardHome = () => {
 
     useEffect(() => {
         setLoading(true);
-        fetch(`http://localhost:8000/message`)
+        fetch(`https://tonmoy-portfolio-server-rosy.vercel.app/message`)
             .then(res => {
                 return res.json();
             })

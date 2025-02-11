@@ -3,7 +3,7 @@
 import { UserData } from "@/app/register/page";
 
 export const registerUser = async (data: UserData) => {
-    const res = await fetch(`http://localhost:8000/register`, {
+    const res = await fetch(`https://tonmoy-portfolio-server-rosy.vercel.app/register`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
